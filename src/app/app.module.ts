@@ -17,6 +17,11 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+
 
 
 const appRoutes: Routes = [
@@ -43,7 +48,10 @@ const appRoutes: Routes = [
     HttpModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    NgbModule.forRoot(),
+    BrowserAnimationsModule, 
+    CalendarModule.forRoot()
   ],
   providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]

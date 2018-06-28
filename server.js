@@ -5,6 +5,8 @@ const express       = require('express');
 const path          = require('path');
 const http          = require('http');
 const bodyParser    = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
 const mongoose      = require('mongoose');
 
 // Get config
@@ -13,17 +15,42 @@ const config = require('./config');
 // Initialize database
 mongoose.connect(config.dbURI);
 
+//On connection
+mongoose.connection.on('connected', () =>{
+  console.log('connected to database '+config.dbURI);
+});
+
+//On error
+mongoose.connection.on('error', (err) =>{
+  console.log('database error '+err);
+});
+
+
 // Get API routes
 // const lab = require('./server/routes/lab.route');
 
 const app = express();
 
+const users = require('./routes/users');
+
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+// CORS Middleware
+app.use(cors());
+
+
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist/lab-reservation-system')));
+app.use(express.static(path.join(__dirname, 'dist/ucsc-lab')));
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./passport')(passport);
+
+app.use('/users', users);
 
 // Set lab routes
 // app.use('/lab', lab);
