@@ -4,6 +4,9 @@ import { TimepickerModule } from 'ngx-bootstrap';
 import { AdlabService } from '../../services/adlab.service';
 import { Router } from '@angular/router';
 
+import {LabName} from './labname';
+import { Time } from 'ngx-bootstrap/timepicker/timepicker.models';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +17,20 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   datePickerConfig: Partial<BsDatepickerConfig>;
   mstep = 30;
-  time1: String;
+  time1: Date;
   // minTime:Date = new Date();
   // maxTime:Date = new Date();
+
+  lab: LabName[];
+  time2: Date;
+  time3: String;
+  date2: String;
+  event: String;
+  labs: String;
+
+
+  
+
 
 
   constructor(private adlabService: AdlabService) {
@@ -32,12 +46,24 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.lab = [
+      {id:1,name:"Lab A"},
+      {id:2,name:"Lab B"},
+      {id:3,name:"Lab C"},
+      {id:4,name:"Lab D"},
+      {id:4,name:"Lab E"}
+    ];
   }
 
-  OnLabSubmit(){
+  onLabSubmit(){
     const lab = {
-      
+      lab:this.labs,
+      fromtime:this.time2.getTime,
+      totime:this.time3,
+      date:this.date2,
+      event:this.event
     }
+    console.log(lab);
   }
 
 }
