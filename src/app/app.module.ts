@@ -19,8 +19,17 @@ import {AuthService} from './services/auth.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import {AdlabService} from './services/adlab.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { LabComponent } from './components/lab/lab.component';
+import { SearchLabComponent } from './components/search-lab/search-lab.component';
+import { SearchTimeComponent } from './components/search-time/search-time.component';
+import { AddLabComponent } from './components/add-lab/add-lab.component';
+
 
 
 
@@ -29,7 +38,11 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
+  {path: 'lab', component: LabComponent},
+  {path: 'search-lab', component: SearchLabComponent},
+  {path: 'search-time', component: SearchTimeComponent},
+  {path: 'add-lab', component: AddLabComponent}
 ];
 
 @NgModule({
@@ -40,7 +53,11 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    LabComponent,
+    SearchLabComponent,
+    SearchTimeComponent,
+    AddLabComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +68,11 @@ const appRoutes: Routes = [
     FlashMessagesModule.forRoot(),
     NgbModule.forRoot(),
     BrowserAnimationsModule, 
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService, AdlabService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

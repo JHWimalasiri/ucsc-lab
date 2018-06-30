@@ -1,3 +1,82 @@
-<p>
-  dashboard works!
-</p>
+
+<html>
+<body>
+  <br>
+    <div style="width: 50%; height: 50%; float:left; padding-right: 30px;">
+        <h2 class="form-header">Lab Reservations</h2>
+        <form >
+          <div class="form-group">
+            <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date1" name="date1">
+          </div>
+          <!-- <div class="form-group">
+            <input type="text" class="form-control" placeholder="Select a lab" [(ngModel)]="lab" name="lab">
+          </div> -->
+          <div class="form-group" style="padding-top: 5px">
+              <select style="block-size: 40px; width: 38%">
+                  <option>Select a lab</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+                </select>
+                
+          </div>
+          <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+        
+        <div style="padding-top: 80px">
+        <h2 class="form-header">Check Availability</h2>
+        <form >
+          <div class="form-group">
+            <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date2" name="date2">
+          </div>
+          <div class="form-group">
+              <timepicker [minuteStep]="mstep" [(ngModel)]="time1" name="time1"></timepicker>
+              <!-- <pre class="alert alert-info">Time is: {{time1}}</pre> -->
+            </div>
+          <input type="submit" class="btn btn-primary" value="Search">
+        </form>
+      </div>
+
+      </div>
+
+    <div style="width: 50%; height: 50%; float:right;">
+    <h2 class="form-header">Make a Reservation</h2>
+        <form >
+
+          <div class="form-group">
+            <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date2" name="date2">
+          </div>
+
+          <div class="form-group">
+            <label>From:</label>
+              <timepicker [minuteStep]="mstep" [(ngModel)]="time2" name="time2"></timepicker>
+              <!-- <pre class="alert alert-info">Time is: {{time2}}</pre> -->
+            </div>
+
+            <div class="form-group">
+                <label>To:</label>
+                  <timepicker [minuteStep]="mstep" [(ngModel)]="time3" name="time3"></timepicker>
+                  <!-- <pre class="alert alert-info">Time is: {{time3}}</pre> -->
+            </div>
+            
+            <div class="form-group">
+                  <select style="block-size: 40px; width: 38%">
+                        <option>Select a lab</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                  </select>
+                      
+            </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Event name" [(ngModel)]="event" name="event">
+          </div>
+
+
+          <input type="submit" class="btn btn-primary" value="Add Reservation">
+        </form>
+      </div>
+
+    <!-- <div style="width: 100%; height: 50%; background-color: red; clear:both">-</div> -->
+
+</body>
+</html>
