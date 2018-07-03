@@ -32,7 +32,7 @@ mongoose.connection.on('error', (err) =>{
 const app = express();
 
 const users = require('./routes/users');
-var labRoute = require('./routes/labRoute.js');
+const labroute = require('./routes/labroute');
 
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -53,7 +53,7 @@ require('./passport')(passport);
 
 app.use('/users', users);
 // app.use('/labs', labs);
-app.use('/labs',labRoute)
+app.use('/labroute',labroute)
 
 // Set lab routes
 // app.use('/lab', lab);

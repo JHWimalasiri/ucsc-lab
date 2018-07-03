@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const Lab = require('../models/lab');
 
-var {Lab} = require('../models/lab');
 
 //localhost:3000/labs/
 router.get('/', (req, res) => {
@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/',(req,res) => {
-    var lab = new Lab({
+router.post('/savelab',(req, res, next) => {
+    let newLab = new Lab({
         lab: req.body.lab,
         fromtime: req.body.fromtime,
         totime: req.body.totime,
@@ -24,13 +24,13 @@ router.post('/',(req,res) => {
         event: req.body.event
     });
 
-    lab.save((err,docs) => {
-        if(!err){
-            res.send(docs);
-        }
-        else{
-            console.log('Error in lab save:' + JSON.stringify(err,undefined,2));
-        }
+    Lab.addLab(newLab,(err, lab) => {
+      if(err) {
+        // res.json({success: false, msg: 'Failed to register user'});
+        res.json(err);
+      } else {
+        res.json({success: true, msg: 'Lab registered'});
+      }
     });
 });
 

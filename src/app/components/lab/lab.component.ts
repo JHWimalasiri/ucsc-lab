@@ -4,6 +4,7 @@ import { TimepickerModule } from 'ngx-bootstrap';
 import { AdlabService } from '../../services/adlab.service';
 import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 import {LabName} from '../dashboard/labname';
 import { Time } from 'ngx-bootstrap/timepicker/timepicker.models';
@@ -11,8 +12,7 @@ import { Time } from 'ngx-bootstrap/timepicker/timepicker.models';
 @Component({
   selector: 'app-lab',
   templateUrl: './lab.component.html',
-  styleUrls: ['./lab.component.css'],
-  providers: [AdlabService]
+  styleUrls: ['./lab.component.css']
 })
 export class LabComponent implements OnInit {
   datePickerConfig: Partial<BsDatepickerConfig>;
@@ -26,9 +26,11 @@ export class LabComponent implements OnInit {
   event: String;
   labs: String;
 
-  constructor(private adlabService: AdlabService) {
+  constructor(
+    private flashMessage: FlashMessagesService,
+    private adlabService: AdlabService) {
     this.datePickerConfig = Object.assign({},{
-      containerClass:'theme-dark-blue', 
+      containerClass:'theme-dark-blue',
       showWeekNumbers:false,
       dateInputFormat:'DD/MM/YYYY'
     });
@@ -48,15 +50,22 @@ export class LabComponent implements OnInit {
     ];
   }
 
-  onLabSubmit(){
+  onLabSubmit() {
     const lab = {
-      lab:this.labs,
-      fromtime:parseInt(this.convertToTime(this.time2),10),
-      totime:parseInt(this.convertToTime(this.time3),10),
-      date:this.convert(this.date2),
-      event:this.event
+      lab: this.labs,
+      fromtime: parseInt(this.convertToTime(this.time2), 10),
+      totime: parseInt(this.convertToTime(this.time3), 10),
+      date: this.convert(this.date2),
+      event: this.event
     }
     console.log(lab);
+    this.adlabService.addLab(lab).subscribe(data => {
+      if (data.success) {
+        this.flashMessage.show('Lab is Registered', {cssClass: 'alert-success', timeout: 3000});
+      } else {
+        this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+      }
+    });
   }
 
   convert(str) {
@@ -73,7 +82,7 @@ convertToTime(str) {
       minutes = ("0" + date.getMinutes()).slice(-2);
 
         return [hours, minutes ].join("");
-  
+
 }
 
 }

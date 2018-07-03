@@ -3,7 +3,7 @@ const config = require('../config');
 
 
 
-var Lab = mongoose.model('Lab',{
+const labSchema = mongoose.Schema({
   lab: {
     type: String
   },
@@ -22,5 +22,9 @@ var Lab = mongoose.model('Lab',{
 });
 
 
+const Lab = module.exports = mongoose.model('Lab', labSchema);
 
-module.exports = {Lab};
+
+module.exports.addLab = function(newLab, callback) {
+  newLab.save(callback);
+}

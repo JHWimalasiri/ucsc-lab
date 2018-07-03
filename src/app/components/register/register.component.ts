@@ -52,7 +52,7 @@ onRegisterSubmit(){
 
     // Register user
     this.authService.registerUser(user).subscribe(data => {
-    if(data.success) {
+    if (data.success) {
       this.flashMessage.show('You are now registered and can now login', {cssClass: 'alert-success', timeout: 3000});
       this.router.navigate(['/login']);
     } else {
