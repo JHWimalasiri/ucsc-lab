@@ -25,10 +25,16 @@ const labSchema = mongoose.Schema({
 const Lab = module.exports = mongoose.model('Lab', labSchema);
 
 
+
+
 module.exports.addLab = function(newLab, callback) {
   newLab.save(callback);
 }
 
 module.exports.getLab = function(callback){
   Lab.find(callback);
+}
+
+module.exports.searchLab = function (findLab, callback) {
+  Lab.find({date : findLab.date, lab : findLab.lab}, callback);
 }

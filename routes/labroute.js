@@ -34,6 +34,21 @@ router.post('/savelab',(req, res, next) => {
     });
 });
 
-router.post('/searchlab',(req, res, next) => {});
+router.post('/searchlab',(req, res, next) => {
+  let findLab = new Lab({
+    date : req.body.date,
+    lab : req.body.lab
+  });
+
+
+  Lab.searchLab(findLab, function(err,lab) {
+    if(!err){
+      res.json({Reservation_details:lab});
+    }
+    else{
+      console.log('Error in retrieving lab:' + JSON.stringify(err,undefined,2));
+    }
+  });
+});
 
 module.exports = router;
