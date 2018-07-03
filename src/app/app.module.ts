@@ -26,8 +26,6 @@ import { CalendarModule } from 'angular-calendar';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { LabComponent } from './components/lab/lab.component';
-import { SearchLabComponent } from './components/search-lab/search-lab.component';
-import { SearchTimeComponent } from './components/search-time/search-time.component';
 import { AddLabComponent } from './components/add-lab/add-lab.component';
 
 
@@ -40,8 +38,6 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'lab', component: LabComponent},
-  {path: 'search-lab', component: SearchLabComponent},
-  {path: 'search-time', component: SearchTimeComponent},
   {path: 'add-lab', component: AddLabComponent}
 ];
 
@@ -55,8 +51,6 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     LabComponent,
-    SearchLabComponent,
-    SearchTimeComponent,
     AddLabComponent
   ],
   imports: [

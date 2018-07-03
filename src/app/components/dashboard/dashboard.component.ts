@@ -16,18 +16,17 @@ import { Time } from 'ngx-bootstrap/timepicker/timepicker.models';
 })
 export class DashboardComponent implements OnInit {
   datePickerConfig: Partial<BsDatepickerConfig>;
-  mstep = 30;
+  mstep = 60;
   time1: Date;
   // minTime:Date = new Date();
   // maxTime:Date = new Date();
 
   lab: LabName[];
-  time2: Date;
+  time2: String;
   time3: String;
   date2: String;
   event: String;
   labs: String;
-
 
   
 
@@ -58,12 +57,33 @@ export class DashboardComponent implements OnInit {
   onLabSubmit(){
     const lab = {
       lab:this.labs,
-      fromtime:this.time2.getTime,
-      totime:this.time3,
-      date:this.date2,
+      fromtime:parseInt(this.convertToTime(this.time2),10),
+      totime:parseInt(this.convertToTime(this.time3),10),
+      date:this.convert(this.date2),
       event:this.event
     }
     console.log(lab);
   }
+
+  convert(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth()+1)).slice(-2),
+        day  = ("0" + date.getDate()).slice(-2);
+    return [ date.getFullYear(), mnth, day ].join("-");
+}
+
+convertToTime(str) {
+   var minutes:String;
+  var date = new Date(str),
+      hours  = ("0" + date.getHours()).slice(-2);
+      minutes = ("0" + date.getMinutes()).slice(-2);
+
+        return [hours, minutes ].join("");
+  
+}
+
+
+
+
 
 }

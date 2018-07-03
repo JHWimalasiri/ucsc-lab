@@ -1,27 +1,26 @@
 const mongoose = require('mongoose');
 const config = require('../config');
 
-// User Schema
-const LabSchema = mongoose.Schema ({
+
+
+var Lab = mongoose.model('Lab',{
   lab: {
     type: String
   },
   fromtime: {
-    type: String,
-    required: true
+    type: Number
   },
   totime: {
-    type: String,
-    required: true
+    type: Number
   },
   date: {
-    type: String,
-    required: true
+    type: String
   },
   event: {
-    type: String,
-    required: true
+    type: String
   }
 });
 
-const User = module.exports = mongoose.model('Lab', LabSchema);
+
+
+module.exports = {Lab};
