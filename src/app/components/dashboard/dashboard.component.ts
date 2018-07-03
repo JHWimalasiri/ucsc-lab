@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   date2: String;
   event: String;
   labs: String;
+  date1: String;
 
   data: any[]= []; //for getlab
   data1: any[]=[];
@@ -88,6 +89,13 @@ convertToTime(str) {
 }
 
 searchLab(){
+  const searchlab = {
+    date: this.date1,
+    lab: this.labs
+  }
+
+  this.adlabService.searchLab(searchlab).subscribe(data => {});
+
   this.adlabService.getLab().subscribe(res=>{
     this.data = res.Reservation_details;
   });
