@@ -90,9 +90,10 @@ convertToTime(str) {
 
 searchLab(){
   const searchlab = {
-    date: this.date1,
+    date: this.convert(this.date1),
     lab: this.labs
   }
+  console.log(searchlab);
 
   this.adlabService.searchLab(searchlab).subscribe(data => {});
 
