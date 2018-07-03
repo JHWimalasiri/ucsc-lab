@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,26 @@ storeUserData(token, user) {
     this.authToken = token;
     this.user = user;
   }
+
+  loadToken(){
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+  }
+
+  loggedIn(){
+
+    if (localStorage.id_token == undefined ){
+    //  console.log('Hello');
+     return false
+    } else {
+    // console.log('Goodbye');
+ 
+    const helper = new JwtHelperService();
+    // console.log(helper.isTokenExpired(localStorage.id_token));  
+    return !helper.isTokenExpired(localStorage.id_token);
+      }
+  } 
+ 
 
   logout() {
     this.authToken = null;
