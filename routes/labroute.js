@@ -34,6 +34,6 @@ router.post('/savelab',(req, res, next) => {
     });
 });
 
-
+router.post('/searchlab',(req, res, next) => {});
 
 module.exports = router;
