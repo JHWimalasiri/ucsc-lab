@@ -24,4 +24,11 @@ export class AdlabService {
     return this.http.post('http://localhost:3000/labroute/savelab', lab, {headers: headers})
       .pipe(map(res => res.json()));
   }
+
+  getLab(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/labroute/viewlab', {headers: headers})
+      .pipe(map(res => res.json()));
+  }
 }

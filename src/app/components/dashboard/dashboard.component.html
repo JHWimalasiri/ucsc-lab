@@ -4,10 +4,10 @@
   <br>
     <div style="width: 50%; height: 50%; float:left; padding-right: 30px;">
         <h2 class="form-header">Lab Reservations</h2>
-        <form >
+        <form (submit) = "searchLab()">
           
           <div class="form-group">
-            <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date1" name="date1">
+            <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date1" name="date1" style="width:50%">
           </div>
           <!-- <div class="form-group">
             <input type="text" class="form-control" placeholder="Select a lab" [(ngModel)]="lab" name="lab">
@@ -26,50 +26,89 @@
       </div>
 
     <div style="width: 50%; height: 50%; float:right;">
-      <h2 class="form-header">Check Availability</h2>
-        <form >
-          <div class="form-group">
-            <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date2" name="date2">
-          </div>
-          <div class="form-group">
-              <timepicker [minuteStep]="mstep" [(ngModel)]="time1" name="time1"></timepicker>
-              <!-- <pre class="alert alert-info">Time is: {{time1}}</pre> -->
-            </div>
-          <input type="submit" class="btn btn-primary" value="Search">
-        </form>
+        <div class="form-group">
+            <br>
+            <div class="col s7" >
+              <table class="table table-bordered">
+      
+                  <thead>
+                    <tr class="header">
+                        <th>Lab</th>
+                        <th>From(H)</th>
+                        <th>To(H)</th>
+                        <th>Date</th>
+                        <th>Event</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Lab A</td>
+                      <td>1100</td>
+                      <td>1400</td>
+                      <td>2018-07-10</td>
+                      <td>IEEE Session</td>
+                    </tr>
+                    <tr  *ngFor="let item of this.data; let i = index">
+                        <td>{{item.lab}}</td>
+                          <td>{{ item.fromtime }}</td>
+                          <td>{{ item.totime }}</td>
+                          <td>{{ item.date }}</td>
+                          <td>{{item.event}}</td>
+                  
+                
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col s7" >
+                    <table class="table table-bordered">
+                      
+                        <thead>
+                          <tr class="header">
+                              <th>Lab</th>
+                              <th>From(H)</th>
+                              <th>To(H)</th>
+                              <th>Date</th>
+                              <th>Event</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Lab A</td>
+                            <td>1100</td>
+                            <td>1400</td>
+                            <td>2018-07-10</td>
+                            <td>IEEE Session</td>
+                          </tr>
+                          <tr  *ngFor="let item of this.data1; let i = index">
+                              <td>{{item.lab}}</td>
+                                <td>{{ item.fromtime }}</td>
+                                <td>{{ item.totime }}</td>
+                                <td>{{ item.date }}</td>
+                                <td>{{item.event}}</td>
+                        
+                      
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+      
       </div>
 
       
               
-    <div style="width: 100%; height: 50%;">
-        <div class="form-group" style="position: absolute; bottom: 50px">
-      <br>
-      <div class="col s7" >
-        <table class="table table-bordered">
-
-            <thead>
-                <!-- <tr class="header"><th>Date:</th></tr>
-                <tr class="header"><th>Lab:</th></tr> -->
-              <tr class="header">
-                  <th>Lab</th>
-                  <th>From(H)</th>
-                  <th>To(H)</th>
-                  <th>Date</th>
-                  <th>Event</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Lab A</td>
-                <td>1100</td>
-                <td>1400</td>
-                <td>06-07-2018</td>
-                <td>IEEE Session</td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-          </div>
+    <div style="width: 100%; padding-top:20px; float: left;">
+            <h2 class="form-header">Check Availability</h2>
+            <form (submit) = "searchTime()">
+              <div class="form-group">
+                <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date2" name="date2" style="width:25%">
+              </div>
+              <div class="form-group">
+                  <timepicker [minuteStep]="mstep" [(ngModel)]="time1" name="time1"></timepicker>
+                  <!-- <pre class="alert alert-info">Time is: {{time1}}</pre> -->
+                </div>
+              <input type="submit" class="btn btn-primary" value="Search">
+            </form>
+        
     
     </div>
 

@@ -28,3 +28,7 @@ const Lab = module.exports = mongoose.model('Lab', labSchema);
 module.exports.addLab = function(newLab, callback) {
   newLab.save(callback);
 }
+
+module.exports.getLab = function(callback){
+  Lab.find(callback);
+}

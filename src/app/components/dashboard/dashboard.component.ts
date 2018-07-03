@@ -28,6 +28,9 @@ export class DashboardComponent implements OnInit {
   event: String;
   labs: String;
 
+  data: any[]= []; //for getlab
+  data1: any[]=[];
+
   
 
 
@@ -52,6 +55,8 @@ export class DashboardComponent implements OnInit {
       {id:4,name:"Lab D"},
       {id:4,name:"Lab E"}
     ];
+
+    // this.searchLab();
   }
 
   onLabSubmit(){
@@ -82,7 +87,17 @@ convertToTime(str) {
   
 }
 
+searchLab(){
+  this.adlabService.getLab().subscribe(res=>{
+    this.data = res.Reservation_details;
+  });
+}
 
+searchTime(){
+  this.adlabService.getLab().subscribe(res=>{
+    this.data1 = res.Reservation_details;
+  });
+}
 
 
 

@@ -4,10 +4,10 @@ const Lab = require('../models/lab');
 
 
 //localhost:3000/labs/
-router.get('/', (req, res) => {
-    Lab.find((err,docs) => {
+router.post('/viewlab', (req, res) => {
+    Lab.getLab(function(err,lab) {
         if(!err){
-                    res.send(docs);
+                    res.json({Reservation_details:lab});
                 }
                 else{
                     console.log('Error in retrieving lab:' + JSON.stringify(err,undefined,2));
