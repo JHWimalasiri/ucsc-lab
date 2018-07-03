@@ -37,5 +37,6 @@ export class AdlabService {
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/labroute/searchlab', searchlab, {headers: headers})
       .pipe(map(res => res.json()));
+
   }
 }
