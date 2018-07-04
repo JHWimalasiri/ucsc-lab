@@ -28,4 +28,31 @@ export class ValidateService {
       return true;
     }
   }
+
+  validateTime(lab){
+    if(lab.totime<lab.fromtime || lab.totime==lab.fromtime){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+
+  validateSearchLab(searchlab){
+    if(searchlab.date == undefined || searchlab.lab == undefined){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+
+  validateSearchTime(getlab){
+    if(getlab.date == undefined || getlab.fromtime == undefined || getlab.totime == undefined){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 }

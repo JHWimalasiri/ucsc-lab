@@ -27,6 +27,7 @@
 
     <div style="width: 50%; height: 50%; float:right;">
         <div class="form-group">
+          <h3>Lab Reservations</h3>
             <br>
             <div class="col s7" >
               <table class="table table-bordered">
@@ -41,13 +42,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Lab A</td>
-                      <td>1100</td>
-                      <td>1400</td>
-                      <td>2018-07-10</td>
-                      <td>IEEE Session</td>
-                    </tr>
                     <tr  *ngFor="let item of this.data; let i = index">
                         <td>{{item.lab}}</td>
                           <td>{{ item.fromtime }}</td>
@@ -59,6 +53,9 @@
                     </tbody>
                   </table>
                 </div>
+                <br>
+                <h3>Reserved Labs (Unavailable)</h3>
+                <br>
                 <div class="col s7" >
                     <table class="table table-bordered">
 
@@ -72,13 +69,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>Lab A</td>
-                            <td>1100</td>
-                            <td>1400</td>
-                            <td>2018-07-10</td>
-                            <td>IEEE Session</td>
-                          </tr>
                           <tr  *ngFor="let item of this.data1; let i = index">
                               <td>{{item.lab}}</td>
                                 <td>{{ item.fromtime }}</td>
@@ -103,11 +93,11 @@
                 <input type="text" class="form-control" bsDatepicker [bsConfig]="datePickerConfig" placeholder="Pick a date" [(ngModel)]="date2" name="date2" style="width:25%">
               </div>
               <div class="form-group">
-                  <timepicker [minuteStep]="mstep" [(ngModel)]="time2" name="time1"></timepicker>
+                  <timepicker [minuteStep]="mstep" [(ngModel)]="time2" name="time2"></timepicker>
                   <!-- <pre class="alert alert-info">Time is: {{time1}}</pre> -->
                 </div>
               <div class="form-group">
-                <timepicker [minuteStep]="mstep" [(ngModel)]="time3" name="time1"></timepicker>
+                <timepicker [minuteStep]="mstep" [(ngModel)]="time3" name="time3"></timepicker>
                 <!-- <pre class="alert alert-info">Time is: {{time1}}</pre> -->
               </div>
               <input type="submit" class="btn btn-primary" value="Search">

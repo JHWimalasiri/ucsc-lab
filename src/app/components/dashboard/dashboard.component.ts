@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
 import {AdlabService} from '../../services/adlab.service';
+import {FlashMessagesService} from 'angular2-flash-messages';
+import {ValidateService} from '../../services/validate.service'
+
 
 import {LabName} from './labname';
 
@@ -33,7 +36,8 @@ export class DashboardComponent implements OnInit {
 
 
 
-  constructor(private adlabService: AdlabService) {
+  constructor(private flashMessage: FlashMessagesService,
+    private validateService: ValidateService,private validateService1: ValidateService,private adlabService: AdlabService) {
     this.datePickerConfig = Object.assign({}, {
       containerClass: 'theme-dark-blue',
       showWeekNumbers: false,
@@ -92,6 +96,13 @@ searchLab() {
   };
   console.log(searchlab);
 
+  // Required Fields
+  if(!this.validateService.validateSearchLab(searchlab)) {
+    this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+    // console.log('Please fill in all fields');
+    return false;
+  }
+
   this.adlabService.searchLab(searchlab).subscribe(res => {
     this.data = res.Reservation_details;
   });
@@ -104,6 +115,14 @@ searchTime() {
       totime : parseInt(this.convertToTime(this.time3), 10)
     };
     console.log(getlab);
+
+    // Required Fields
+  if(!this.validateService.validateSearchTime(getlab)) {
+    this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+    console.log('Please fill in all fields');
+    return false;
+  }
+
   this.adlabService.getLab(getlab).subscribe(res => {
     this.data1 = res.Reservation_details;
   });

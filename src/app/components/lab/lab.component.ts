@@ -69,6 +69,12 @@ export class LabComponent implements OnInit {
       return false;
     }
 
+    if(!this.validateService.validateTime(lab)) {
+      this.flashMessage.show('Invalid time period', {cssClass: 'alert-danger', timeout: 3000});
+      // console.log('Please fill in all fields');
+      return false;
+    }
+
     this.adlabService.addLab(lab).subscribe(data => {
       if (data.success) {
         this.flashMessage.show('Lab reservation successful', {cssClass: 'alert-success', timeout: 3000});
