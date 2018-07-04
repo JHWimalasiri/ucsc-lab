@@ -5,6 +5,7 @@ import { AdlabService } from '../../services/adlab.service';
 import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import {ValidateService} from '../../services/validate.service'
 
 import {LabName} from '../dashboard/labname';
 import { Time } from 'ngx-bootstrap/timepicker/timepicker.models';
@@ -28,6 +29,7 @@ export class LabComponent implements OnInit {
 
   constructor(
     private flashMessage: FlashMessagesService,
+    private validateService: ValidateService,
     private adlabService: AdlabService) {
     this.datePickerConfig = Object.assign({},{
       containerClass:'theme-dark-blue',
@@ -36,7 +38,7 @@ export class LabComponent implements OnInit {
     });
     // this.minTime.setHours(8);
     // this.minTime.setMinutes(0);
-    // this.maxTime.setHours(20);
+    // this.maxTime.setHours(18);
     // this.maxTime.setMinutes(0);
    }
 
@@ -59,9 +61,17 @@ export class LabComponent implements OnInit {
       event: this.event
     }
     console.log(lab);
+
+    // Required Fields
+    if(!this.validateService.validateLab(lab)) {
+      this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+      // console.log('Please fill in all fields');
+      return false;
+    }
+
     this.adlabService.addLab(lab).subscribe(data => {
       if (data.success) {
-        this.flashMessage.show('Lab is Registered', {cssClass: 'alert-success', timeout: 3000});
+        this.flashMessage.show('Lab reservation successful', {cssClass: 'alert-success', timeout: 3000});
       } else {
         this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
       }
