@@ -5,7 +5,12 @@ const Lab = require('../models/lab');
 
 //localhost:3000/labs/
 router.post('/viewlab', (req, res) => {
-    Lab.getLab(function(err,lab) {
+  let getLab = new Lab({
+    date : req.body.date,
+    fromtime : req.body.fromtime,
+    totime : req.body.totime
+  });
+    Lab.getLab(getLab, function(err,lab) {
         if(!err){
                     res.json({Reservation_details:lab});
                 }

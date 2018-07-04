@@ -57,16 +57,16 @@ export class DashboardComponent implements OnInit {
     // this.searchLab();
   }
 
-  onLabSubmit() {
-    const lab = {
-      lab: this.labs,
-      fromtime: parseInt(this.convertToTime(this.time2), 10),
-      totime: parseInt(this.convertToTime(this.time3), 10),
-      date: this.convert(this.date2),
-      event: this.event
-    };
-    console.log(lab);
-  }
+  // onLabSubmit() {
+  //   const lab = {
+  //     lab: this.labs,
+  //     fromtime: parseInt(this.convertToTime(this.time2), 10),
+  //     totime: parseInt(this.convertToTime(this.time3), 10),
+  //     date: this.convert(this.date2),
+  //     event: this.event
+  //   };
+  //   console.log(lab);
+  // }
 
   convert(str) {
     let date = new Date(str),
@@ -98,7 +98,13 @@ searchLab() {
 }
 
 searchTime() {
-  this.adlabService.getLab().subscribe(res => {
+    const getlab = {
+      date : this.convert(this.date2),
+      fromtime : parseInt(this.convertToTime(this.time2), 10),
+      totime : parseInt(this.convertToTime(this.time3), 10)
+    };
+    console.log(getlab);
+  this.adlabService.getLab(getlab).subscribe(res => {
     this.data1 = res.Reservation_details;
   });
 }

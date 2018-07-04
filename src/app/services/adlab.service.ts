@@ -25,10 +25,10 @@ export class AdlabService {
       .pipe(map(res => res.json()));
   }
 
-  getLab(){
+  getLab(getlab){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/labroute/viewlab', {headers: headers})
+    return this.http.post('http://localhost:3000/labroute/viewlab', getlab, {headers: headers})
       .pipe(map(res => res.json()));
   }
 
