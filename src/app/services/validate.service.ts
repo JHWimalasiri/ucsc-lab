@@ -19,4 +19,13 @@ export class ValidateService {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
+
+  validateLab(lab){
+    if(lab.lab == undefined || lab.fromtime == undefined || lab.totime == undefined || lab.date == undefined || lab.event == undefined){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 }
